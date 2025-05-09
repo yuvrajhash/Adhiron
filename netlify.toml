@@ -1,0 +1,28 @@
+# Netlify config for static site generation
+
+[build]
+  # Use our custom build script which will handle fallback to maintenance page if needed
+  command = "npm run netlify-build"
+  publish = "out"
+
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
+  NODE_VERSION = "18.17.0"
+  NEXT_DISABLE_ESLINT = "1"
+  NEXT_DISABLE_TYPECHECK = "1"
+  NETLIFY_USE_YARN = "false"
+  # Force Node.js to use polling which helps with Windows path issues
+  CHOKIDAR_USEPOLLING = "1"
+  NETLIFY_NEXT_PLUGIN_SKIP = "false"
+
+[build.processing]
+  skip_processing = false
+
+# Handle SPA routing for static HTML
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
