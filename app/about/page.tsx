@@ -17,7 +17,7 @@ import {
   PhoneCall,
   Mail,
 } from "lucide-react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const FLOATING_COMPOUNDS = [
   "CoQ10",
@@ -67,8 +67,27 @@ const sectionVariants = {
 };
 
 export default function AboutPage() {
+  const [compounds, setCompounds] = useState([]);
+  
   useEffect(() => {
     document.body.style.fontFamily = "'Manrope', sans-serif";
+    
+    // Initialize compounds with window dimensions after component mounts
+    setCompounds(
+      FLOATING_COMPOUNDS.map((name) => ({
+        name,
+        style: {
+          opacity: 0.12 + Math.random() * 0.2,
+          x: Math.random() * window.innerWidth * 0.9,
+          y: Math.random() * window.innerHeight * 0.8,
+          scale: 0.9 + Math.random() * 0.8,
+          rotate: Math.random() * 360,
+          left: `${Math.random() * 90}%`,
+          top: `${Math.random() * 80}%`,
+          color: Math.random() > 0.5 ? "#2563eb33" : "#05966933",
+        }
+      }))
+    );
   }, []);
 
   return (
@@ -76,15 +95,15 @@ export default function AboutPage() {
       <div className="relative min-h-screen bg-gradient-to-tr from-blue-50 via-emerald-50 to-indigo-100 overflow-x-hidden font-sans pt-24 pb-16">
         {/* Floating Molecules Background */}
         <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-          {FLOATING_COMPOUNDS.map((name, i) => (
+          {compounds.map((compound, i) => (
             <motion.div
-              key={name}
+              key={compound.name}
               initial={{
-                opacity: 0.12 + Math.random() * 0.2,
-                x: Math.random() * window.innerWidth * 0.9,
-                y: Math.random() * window.innerHeight * 0.8,
-                scale: 0.9 + Math.random() * 0.8,
-                rotate: Math.random() * 360,
+                opacity: compound.style.opacity,
+                x: compound.style.x,
+                y: compound.style.y,
+                scale: compound.style.scale,
+                rotate: compound.style.rotate,
               }}
               animate={{
                 y: ["0%", "20%", "0%"],
@@ -105,13 +124,13 @@ export default function AboutPage() {
               }}
               className="absolute select-none font-bold text-[1.2rem] md:text-2xl uppercase tracking-widest"
               style={{
-                color: i % 2 === 0 ? "#2563eb33" : "#05966933",
-                left: `${Math.random() * 90}%`,
-                top: `${Math.random() * 80}%`,
+                color: compound.style.color,
+                left: compound.style.left,
+                top: compound.style.top,
                 filter: "blur(0.5px)",
               }}
             >
-              {name}
+              {compound.name}
             </motion.div>
           ))}
         </div>
@@ -192,7 +211,7 @@ export default function AboutPage() {
               <Globe2 className="text-green-600 mb-3" size={40} />
               <h3 className="text-xl font-bold text-green-800 mb-2">Vision</h3>
               <p className="text-green-700 text-center text-lg">
-              To be the world’s most trusted leader in herbaceutical and nutraceutical science, delivering natural, effective, and accessible wellness solutions that inspire healthier lives and global well-being.
+              To be the world's most trusted leader in herbaceutical and nutraceutical science, delivering natural, effective, and accessible wellness solutions that inspire healthier lives and global well-being.
               </p>
             </div>
             <div className="bg-gradient-to-br from-yellow-50 via-white to-red-50 rounded-3xl shadow-lg p-8 flex flex-col items-center border border-yellow-200">
@@ -312,7 +331,7 @@ export default function AboutPage() {
                     className="rounded-full object-cover"
                   />
                   <div>
-                    <p className="text-indigo-900 italic mb-2">“{quote}”</p>
+                    <p className="text-indigo-900 italic mb-2">"{quote}"</p>
                     <p className="font-semibold text-indigo-800">{name}</p>
                     <p className="text-indigo-700 text-sm">{title}</p>
                   </div>

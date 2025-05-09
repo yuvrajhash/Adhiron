@@ -106,18 +106,54 @@ const tabs = [
 const bgGrad = "bg-gradient-to-tr from-blue-50 via-teal-50 to-green-100";
 
 function FloatingCompounds() {
+  // Define proper type for compound
+  type Compound = {
+    name: string;
+    style: {
+      opacity: number;
+      x: number;
+      y: number;
+      scale: number;
+      rotate: number;
+      left: string;
+      top: string;
+      color: string;
+    }
+  };
+  
+  const [compounds, setCompounds] = useState<Compound[]>([]);
+  
+  useEffect(() => {
+    // Initialize compounds with window dimensions after component mounts
+    setCompounds(
+      FLOATING_COMPOUNDS.map((name) => ({
+        name,
+        style: {
+          opacity: 0.18 + Math.random() * 0.2,
+          x: Math.random() * window.innerWidth * 0.9,
+          y: Math.random() * window.innerHeight * 0.8,
+          scale: 0.9 + Math.random() * 0.8,
+          rotate: Math.random() * 360,
+          left: `${Math.random() * 90}%`,
+          top: `${Math.random() * 80}%`,
+          color: Math.random() > 0.5 ? "#1e90ff55" : "#14b8a655",
+        }
+      }))
+    );
+  }, []);
+  
   // Randomize initial positions and animation delays
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      {FLOATING_COMPOUNDS.map((name, i) => (
+      {compounds.map((compound, i) => (
         <motion.div
-          key={name}
+          key={compound.name}
           initial={{
-            opacity: 0.18 + Math.random() * 0.2,
-            x: Math.random() * window.innerWidth * 0.9,
-            y: Math.random() * window.innerHeight * 0.8,
-            scale: 0.9 + Math.random() * 0.8,
-            rotate: Math.random() * 360,
+            opacity: compound.style.opacity,
+            x: compound.style.x,
+            y: compound.style.y,
+            scale: compound.style.scale,
+            rotate: compound.style.rotate,
           }}
           animate={{
             y: ["0%", "20%", "0%"],
@@ -134,13 +170,13 @@ function FloatingCompounds() {
           }}
           className="absolute select-none font-bold text-[1.1rem] md:text-2xl uppercase tracking-widest"
           style={{
-            color: i % 2 === 0 ? "#1e90ff55" : "#14b8a655",
-            left: `${Math.random() * 90}%`,
-            top: `${Math.random() * 80}%`,
+            color: compound.style.color,
+            left: compound.style.left,
+            top: compound.style.top,
             filter: "blur(0.5px)"
           }}
         >
-          {name}
+          {compound.name}
         </motion.div>
       ))}
     </div>
