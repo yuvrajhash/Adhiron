@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, Send, Facebook, Twitter, Linkedin, Instagram } from "lucide-react"; // Added social icons
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const MapSection = dynamic(() => import("../components/MapSection"), { 
   ssr: false,
   loading: () => (
-    <div className="rounded-lg overflow-hidden shadow-lg h-[400px] relative bg-gray-200 flex items-center justify-center"> {/* Adjusted background */} 
+    <div className="rounded-lg overflow-hidden shadow-lg h-[400px] relative bg-gray-100 flex items-center justify-center">
       <p className="text-gray-600">Loading Map...</p>
     </div>
   )
@@ -26,31 +24,28 @@ export default function ContactPage() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
-    setSubmitSuccess(false); // Reset success state on new submission
+    setSubmitSuccess(false);
     
-    // Simulate API call
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
-      // Simulate potential error for demonstration
-      // if (Math.random() > 0.5) throw new Error("Simulated network error");
       setSubmitSuccess(true);
-      setFormData({ // Reset form on success
+      setFormData({
         name: "",
         email: "",
         subject: "",
         message: ""
       });
-      setTimeout(() => setSubmitSuccess(false), 5000); // Hide success message after 5 seconds
-    } catch (error: unknown) {
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } catch (error) {
       console.error("Form submission error:", error instanceof Error ? error.message : String(error));
       setSubmitError("There was an error submitting your message. Please try again later.");
     } finally {
@@ -58,267 +53,181 @@ export default function ContactPage() {
     }
   };
 
-  // Animation variants
-  const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" } // Added ease
-    }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15 // Slightly faster stagger
-      }
-    }
-  };
-
   return (
-    <div className="overflow-x-hidden"> {/* Prevent horizontal overflow */} 
-      {/* Hero Section - Refined */} 
-      <section className="relative py-20 md:py-24 bg-gradient-to-r from-blue-600 to-indigo-600"> {/* Adjusted gradient and padding */} 
-        <div className="container mx-auto px-6 text-white">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <motion.h1 
-              variants={fadeIn}
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4" // Adjusted sizes and weight
-            >
-              Contact Us
-            </motion.h1>
-            <motion.p 
-              variants={fadeIn}
-              className="text-lg md:text-xl text-blue-100" // Adjusted size and color
-            >
-              We&apos;re here to help with any questions you may have.
-            </motion.p>
-          </motion.div>
+    <div>
+      {/* Hero Section - Simple Green Gradient */} 
+      <section className="py-20 bg-gradient-to-br from-green-600 to-green-700">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-5xl font-bold mb-4 text-white">Contact Us</h1>
+          <p className="text-lg text-white/90">
+            We're here to help with any questions you may have.
+          </p>
         </div>
       </section>
 
       {/* Contact Information & Form Section */} 
-      <section className="py-16 md:py-24 bg-gray-50"> {/* Adjusted padding and background */} 
+      <section className="py-16 bg-white"> 
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16"> {/* Increased gap */} 
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16"> 
             {/* Contact Info Column */} 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="lg:col-span-1"
-            >
-              <motion.h2 
-                variants={fadeIn}
-                className="text-2xl md:text-3xl font-bold mb-6 text-gray-800" // Adjusted size
-              >
-                Get in Touch
-              </motion.h2>
-              <motion.p 
-                variants={fadeIn}
-                className="text-gray-600 mb-8 text-lg leading-relaxed" // Adjusted size and leading
-              >
+            <div className="lg:col-span-1">
+              <h2 className="text-2xl font-bold mb-6 text-gray-800">Get in Touch</h2>
+              <p className="text-gray-600 mb-8">
                 Have questions about our products or services? Our team is ready to assist you. Reach out through any of the channels below.
-              </motion.p>
+              </p>
               
-              <div className="space-y-6">
-                {[ // Data array for contact details
-                  { icon: MapPin, title: "Our Location", lines: ["156, Bahadarpur,Selaqui,Dehradun-248197,Uttrakhand"] },
-                  { icon: Phone, title: "Phone Number", lines: ["+91 87911 40933", "+91 95572 13436"] },
-                  { icon: Mail, title: "Email Address", lines: ["Pratik@adhiron.com", "Shradha@adhiron.com"] },
-                  { icon: Clock, title: "Business Hours", lines: ["Mon - Fri: 9:00 AM - 6:00 PM", "Saturday: 10:00 AM - 4:00 PM", "Sunday: Closed"] }
-                ].map((item, index) => (
-                  <motion.div 
-                    key={index}
-                    variants={fadeIn}
-                    className="flex items-start gap-4"
-                  >
-                    <div className="bg-blue-100 p-3 rounded-full flex-shrink-0"> {/* Added flex-shrink-0 */} 
-                      <item.icon className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">{item.title}</h3>
-                      {item.lines.map((line, lineIndex) => (
-                        <p key={lineIndex} className="text-gray-600 text-sm">{line}</p> // Adjusted text size
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              {/* Social Media Links */} 
-              <motion.div 
-                variants={fadeIn}
-                className="mt-10 pt-6 border-t border-gray-200" // Added top border
-              >
-                <h3 className="font-semibold text-gray-800 mb-4">Follow Us</h3>
-                <div className="flex gap-4">
-                  {[ // Data array for social links
-                    { icon: Facebook, href: "#", label: "Facebook" },
-                    { icon: Twitter, href: "#", label: "Twitter" },
-                    { icon: Linkedin, href: "#", label: "LinkedIn" },
-                    { icon: Instagram, href: "#", label: "Instagram" }
-                  ].map((social, index) => (
-                    <a 
-                      key={index}
-                      href={social.href} 
-                      aria-label={social.label}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-gray-500 hover:text-blue-600 transition-colors duration-300"
-                    >
-                      <social.icon className="w-6 h-6" />
-                    </a>
-                  ))}
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-full"> 
+                    <MapPin className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-1">Our Location</h3>
+                    <p className="text-gray-600 text-sm">156, Bahadarpur, Selaqui, Dehradun-248197, Uttrakhand</p>
+                  </div>
                 </div>
-              </motion.div>
-            </motion.div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-full"> 
+                    <Phone className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-1">Phone Number</h3>
+                    <p className="text-gray-600 text-sm">+91 87911 40933</p>
+                    <p className="text-gray-600 text-sm">+91 95572 13436</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-full"> 
+                    <Mail className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-1">Email Address</h3>
+                    <p className="text-gray-600 text-sm">Pratik@adhiron.com</p>
+                    <p className="text-gray-600 text-sm">Shradha@adhiron.com</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-full"> 
+                    <Clock className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-1">Business Hours</h3>
+                    <p className="text-gray-600 text-sm">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                    <p className="text-gray-600 text-sm">Saturday: 10:00 AM - 4:00 PM</p>
+                    <p className="text-gray-600 text-sm">Sunday: Closed</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             
             {/* Contact Form Column */} 
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeIn} // Apply fadeIn to the whole form container
-              className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg" // Added shadow
-            >
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Send Us a Message</h2>
+            <div className="lg:col-span-2 bg-white rounded-lg shadow-md p-8">
+              <h2 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Form Fields */} 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                    <input 
-                      type="text" 
-                      name="name" 
-                      id="name" 
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Your Name"
                       value={formData.name}
                       onChange={handleChange}
-                      required 
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                      placeholder="Your Name"
+                      className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                      required
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                    <input 
-                      type="email" 
-                      name="email" 
-                      id="email" 
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="your.email@example.com"
                       value={formData.email}
                       onChange={handleChange}
-                      required 
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                      placeholder="your.email@example.com"
+                      className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                      required
                     />
                   </div>
                 </div>
                 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                  <input 
-                    type="text" 
-                    name="subject" 
-                    id="subject" 
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="How can we help?"
                     value={formData.subject}
                     onChange={handleChange}
-                    required 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                    placeholder="How can we help?"
+                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                    required
                   />
                 </div>
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                  <textarea 
-                    name="message" 
-                    id="message" 
-                    rows={5} 
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    placeholder="Your message here..."
                     value={formData.message}
                     onChange={handleChange}
-                    required 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none" // Disabled resize
-                    placeholder="Your message here..."
+                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none"
+                    required
                   ></textarea>
                 </div>
                 
-                {/* Submission Button & Status */} 
                 <div>
-                  <motion.button
+                  <button
                     type="submit"
                     disabled={isSubmitting}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white transition duration-300 ease-in-out shadow-md ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'}`}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md flex justify-center items-center gap-2 transition"
                   >
                     {isSubmitting ? (
                       <>
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Submitting...
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>Sending...</span>
                       </>
                     ) : (
                       <>
-                        <Send className="mr-2 h-5 w-5" />
-                        Send Message
+                        <Send className="w-5 h-5" />
+                        <span>Send Message</span>
                       </>
                     )}
-                  </motion.button>
+                  </button>
+                  
+                  {/* Success/Error Messages */}
+                  {submitSuccess && (
+                    <div className="mt-4 bg-green-50 border border-green-200 rounded-md p-3 text-green-800 text-center">
+                      Your message has been sent successfully! We'll get back to you soon.
+                    </div>
+                  )}
+                  {submitError && (
+                    <div className="mt-4 bg-red-50 border border-red-200 rounded-md p-3 text-red-800 text-center">
+                      {submitError}
+                    </div>
+                  )}
                 </div>
-                
-                {/* Submission Status Messages */} 
-                {submitSuccess && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 p-3 bg-green-100 border border-green-300 text-green-800 rounded-md text-sm"
-                  >
-                    Message sent successfully! We&apos;ll get back to you soon.
-                  </motion.div>
-                )}
-                {submitError && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-4 p-3 bg-red-100 border border-red-300 text-red-800 rounded-md text-sm"
-                  >
-                    {submitError}
-                  </motion.div>
-                )}
               </form>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Map Section */}
-      <section className="py-16 md:py-24"> {/* Adjusted padding */}
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeIn}
-          >
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 md:mb-12 text-gray-800">Find Us on the Map</h2> {/* Adjusted size and margin */}
-            <MapSection />
-          </motion.div>
+          <MapSection />
         </div>
       </section>
-
-      {/* Section removed */}
     </div>
   );
 }

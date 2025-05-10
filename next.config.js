@@ -24,6 +24,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Transpile packages that have issues with Next.js
+  transpilePackages: ['parallax-controller', 'react-scroll-parallax'],
 };
 
 module.exports = nextConfig;

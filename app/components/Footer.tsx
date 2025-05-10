@@ -241,23 +241,32 @@ const Footer = () => {
               />
             </h3>
             <ul className="space-y-4">
-              {[
-                { 
-                  icon: <MapPin size={18} />, 
-                  content: "156, Bahadarpur,Selaqui,Dehradun-248197,Uttrakhand",
-                  delay: 0.1
-                },
-                { 
-                  icon: <Phone size={18} />, 
-                  content: "+91 87911 40933" ,
-                  
-                  delay: 0.2
-                },
-                { 
-                  icon: <Mail size={18} />, 
-                  content: "Pratik@adhiron.com",
-                  delay: 0.3
-                }
+                {[
+                  {
+                    icon: <MapPin size={18} />,
+                    content: "156, Bahadarpur,Selaqui,Dehradun-248197,Uttrakhand",
+                    delay: 0.1
+                  },
+                  {
+                    icon: <Phone size={18} />,
+                    content: "+91 87911 40933",
+                    delay: 0.2
+                  },
+                  {
+                    icon: <Phone size={18} />,
+                    content: "+91 95572 13436",
+                    delay: 0.25
+                  },
+                  {
+                    icon: <Mail size={18} />,
+                    content: "Pratik@adhiron.com",
+                    delay: 0.3
+                  },
+                  {
+                    icon: <Mail size={18} />,
+                    content: "Shradha@adhiron.com",
+                    delay: 0.35
+                  }
               ].map((item, index) => (
                 <motion.li 
                   key={index}
@@ -309,34 +318,7 @@ const Footer = () => {
             </motion.span>
             for better health
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-8">
-            {[
-              { href: "/policies", label: "Privacy Policy" },
-              { href: "/policies", label: "Terms of Service" },
-           
-            ].map((link, index) => (
-              <motion.div
-                key={link.label}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index + 0.7, duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <motion.div
-                  whileHover={{ y: -3 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <Link 
-                    href={link.href} 
-                    className="text-gray-300 hover:text-primary transition-colors text-sm relative group"
-                  >
-                    {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-                  </Link>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
+          
         </motion.div>
       </div>
     </footer>

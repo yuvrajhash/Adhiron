@@ -20,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Adhiron Group | Premium Pharmaceutical Products",
-  description: "Your trusted partner in healthcare, providing premium pharmaceutical products for humans and animals.",
+  title: "Adhiron Group | Premium Products",
+  description: "Your trusted partner in healthcare, providing premium products for humans and animals.",
   keywords: ["pharmaceutical", "healthcare", "medicine", "veterinary", "Adhiron", "Vetonovia", "health products"],
   authors: [{ name: "Adhiron Group" }],
   creator: "Adhiron Group",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Adhiron Group | Premium Pharmaceutical Products",
-    description: "Your trusted partner in healthcare, providing premium pharmaceutical products for humans and animals.",
+    title: "Adhiron Group | Premium Products",
+    description: "Your trusted partner in healthcare, providing premium products for humans and animals.",
     url: "https://adhirongroup.com",
     siteName: "Adhiron Group",
     locale: "en_US",
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adhiron Group | Premium Pharmaceutical Products",
-    description: "Your trusted partner in healthcare, providing premium pharmaceutical products for humans and animals.",
+    title: "Adhiron Group | Premium Products",
+    description: "Your trusted partner in healthcare, providing premium products for humans and animals.",
     creator: "@adhirongroup",
   },
   icons: {

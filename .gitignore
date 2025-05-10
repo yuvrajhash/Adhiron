@@ -15,9 +15,6 @@
 # production
 /build
 
-# Ignore images in public folder for deployment
-/public/images
-
 # misc
 .DS_Store
 *.pem

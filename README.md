@@ -1,6 +1,6 @@
 # Adhiron Group E-Commerce Website
 
-A modern, full-featured e-commerce website for Adhiron Group, a pharmaceutical company that provides premium healthcare products for both humans and animals. The website is built with Next.js, Tailwind CSS, and other cutting-edge technologies.
+A modern, full-featured e-commerce website for Adhiron Group, a company that provides premium healthcare products for both humans and animals. The website is built with Next.js, Tailwind CSS, and other cutting-edge technologies.
 
 ## Features
 
@@ -136,7 +136,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 # Pharma E-commerce
 
-This is a Next.js e-commerce platform for pharmaceutical products.
+This is a Next.js e-commerce platform for products.
 
 ## Getting Started
 

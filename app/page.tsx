@@ -78,7 +78,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/main2.jpg"
-            alt="Pharmaceutical laboratory"
+            alt="laboratory"
             fill
             className="object-cover brightness-[0.65] scale-105"
             priority
@@ -310,7 +310,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/fabio-oyXis2kALVg-unsplash.jpg"
-            alt="Pharmaceutical Manufacturing Facility"
+            alt="Manufacturing Facility"
             fill
             className="object-cover opacity-20"
             priority
@@ -723,7 +723,7 @@ export default function Home() {
         }}
         className="text-4xl md:text-5xl font-bold mb-6 text-gray-800 relative inline-block tracking-tight"
       >
-        What Sets Us <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-blue-600">&amp; Apart?</span>
+        What Sets Us <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-blue-600">Apart?</span>
         <motion.div 
           initial={{ width: 0 }}
           whileInView={{ width: '100%' }}
@@ -732,8 +732,6 @@ export default function Home() {
           className="absolute -bottom-2 left-0 h-1 bg-green-500 rounded-full opacity-60"
         />
       </motion.h2>
-      
-      
     </motion.div>
 
     <motion.div
@@ -743,20 +741,79 @@ export default function Home() {
       variants={staggerSlow}
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
     >
-      {[
-        {
-          icon: (
+      {/* Indian Excellence */}
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+              duration: 0.6,
+              delay: 0 * 0.15
+            }
+          }
+        }}
+        whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
+        className="bg-white p-8 rounded-2xl shadow-xl relative overflow-hidden group border border-gray-100 hover:border-green-100"
+      >
+        {/* Animated background elements */}
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0.1 }}
+          whileHover={{ scale: 1.2, opacity: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-green-100"
+        />
+        
+        {/* Value content */}
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-6 text-green-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z" />
               <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97" />
             </svg>
-          ),
-          color: "green",
-          title: "Indian Excellence",
-          description: "Deeply rooted in India's herbal legacy with a forward-looking, globally scalable business model that combines tradition with innovation."
-        },
-        {
-          icon: (
+          </div>
+          
+          <h3 className="text-xl font-bold mb-4 text-gray-800">Indian Excellence</h3>
+          <p className="text-gray-600 leading-relaxed">Deeply rooted in India's herbal legacy with a forward-looking, globally scalable business model that combines tradition with innovation.</p>
+          
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: '40px' }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="h-1 bg-green-500 rounded-full mt-5"
+          />
+        </div>
+      </motion.div>
+
+      {/* Vertical Integration */}
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+              duration: 0.6,
+              delay: 1 * 0.15
+            }
+          }
+        }}
+        whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
+        className="bg-white p-8 rounded-2xl shadow-xl relative overflow-hidden group border border-gray-100 hover:border-blue-100"
+      >
+        {/* Animated background elements */}
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0.1 }}
+          whileHover={{ scale: 1.2, opacity: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-blue-100"
+        />
+        
+        {/* Value content */}
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-6 text-blue-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M21 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7" />
               <path d="M18 4H6a2 2 0 1 0 0 4h12a2 2 0 1 0 0-4Z" />
@@ -766,104 +823,209 @@ export default function Home() {
               <path d="m9 18 3 3 3-3" />
               <path d="M12 8v13" />
             </svg>
-          ),
-          color: "blue",
-          title: "Vertical Integration",
-          description: "Complete control from farm to formulation to final brand-ensuring consistency, quality, and unmatched speed-to-market."
-        },
-        {
-          icon: (
+          </div>
+          
+          <h3 className="text-xl font-bold mb-4 text-gray-800">Vertical Integration</h3>
+          <p className="text-gray-600 leading-relaxed">Complete control from farm to formulation to final brand-ensuring consistency, quality, and unmatched speed-to-market.</p>
+          
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: '40px' }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="h-1 bg-blue-500 rounded-full mt-5"
+          />
+        </div>
+      </motion.div>
+
+      {/* Science + Nature */}
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+              duration: 0.6,
+              delay: 2 * 0.15
+            }
+          }
+        }}
+        whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
+        className="bg-white p-8 rounded-2xl shadow-xl relative overflow-hidden group border border-gray-100 hover:border-teal-100"
+      >
+        {/* Animated background elements */}
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0.1 }}
+          whileHover={{ scale: 1.2, opacity: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-teal-100"
+        />
+        
+        {/* Value content */}
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center mb-6 text-teal-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9.5 2v.19A4 4 0 0 1 12 9h2a4 4 0 0 1 4 4c0 .52-.1 1.02-.29 1.48" />
               <path d="M8 2h8" />
               <path d="M18 14a4 4 0 1 1-8 0" />
               <path d="M4 18.5l5-3v3l5-3" />
             </svg>
-          ),
-          color: "teal",
-          title: "Science + Nature",
-          description: "Blending traditional knowledge with cutting-edge research to create truly effective formulations that harness the best of both worlds."
-        },
-        {
-          icon: (
+          </div>
+          
+          <h3 className="text-xl font-bold mb-4 text-gray-800">Science + Nature</h3>
+          <p className="text-gray-600 leading-relaxed">Blending traditional knowledge with cutting-edge research to create truly effective formulations that harness the best of both worlds.</p>
+          
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: '40px' }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="h-1 bg-teal-500 rounded-full mt-5"
+          />
+        </div>
+      </motion.div>
+
+      {/* Custom Solutions */}
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+              duration: 0.6,
+              delay: 3 * 0.15
+            }
+          }
+        }}
+        whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
+        className="bg-white p-8 rounded-2xl shadow-xl relative overflow-hidden group border border-gray-100 hover:border-pink-100"
+      >
+        {/* Animated background elements */}
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0.1 }}
+          whileHover={{ scale: 1.2, opacity: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-pink-100"
+        />
+        
+        {/* Value content */}
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center mb-6 text-pink-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="4" y="4" width="16" height="16" rx="2" />
               <path d="M9 15.5v-7l7 7V8.5" />
             </svg>
-          ),
-          color: "pink",
-          title: "Custom Solutions",
-          description: "Whether you're an entrepreneur, established brand, or wellness startup-we cater to your exact product and branding needs."
-        },
-        {
-          icon: (
+          </div>
+          
+          <h3 className="text-xl font-bold mb-4 text-gray-800">Custom Solutions</h3>
+          <p className="text-gray-600 leading-relaxed">Whether you're an entrepreneur, established brand, or wellness startup-we cater to your exact product and branding needs.</p>
+          
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: '40px' }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="h-1 bg-pink-500 rounded-full mt-5"
+          />
+        </div>
+      </motion.div>
+
+      {/* Competitive Pricing */}
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+              duration: 0.6,
+              delay: 4 * 0.15
+            }
+          }
+        }}
+        whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
+        className="bg-white p-8 rounded-2xl shadow-xl relative overflow-hidden group border border-gray-100 hover:border-yellow-100"
+      >
+        {/* Animated background elements */}
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0.1 }}
+          whileHover={{ scale: 1.2, opacity: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-yellow-100"
+        />
+        
+        {/* Value content */}
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mb-6 text-yellow-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="m16 6 4 14" />
               <path d="M12 6v14" />
               <path d="M8 8v12" />
               <path d="M4 4v16" />
             </svg>
-          ),
-          color: "yellow",
-          title: "Competitive Pricing",
-          description: "Top-quality products at competitive prices, made possible through our efficient vertical integration and manufacturing expertise."
-        },
-        {
-          icon: (
+          </div>
+          
+          <h3 className="text-xl font-bold mb-4 text-gray-800">Competitive Pricing</h3>
+          <p className="text-gray-600 leading-relaxed">Top-quality products at competitive prices, made possible through our efficient vertical integration and manufacturing expertise.</p>
+          
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: '40px' }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+            className="h-1 bg-yellow-500 rounded-full mt-5"
+          />
+        </div>
+      </motion.div>
+
+      {/* Global Reach */}
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { 
+              duration: 0.6,
+              delay: 5 * 0.15
+            }
+          }
+        }}
+        whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
+        className="bg-white p-8 rounded-2xl shadow-xl relative overflow-hidden group border border-gray-100 hover:border-indigo-100"
+      >
+        {/* Animated background elements */}
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0.1 }}
+          whileHover={{ scale: 1.2, opacity: 0.2 }}
+          transition={{ duration: 0.8 }}
+          className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-indigo-100"
+        />
+        
+        {/* Value content */}
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center mb-6 text-indigo-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="10" />
               <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
               <path d="M2 12h20" />
             </svg>
-          ),
-          color: "indigo",
-          title: "Global Reach",
-          description: "While rooted in Indian traditions, our solutions are designed to meet international standards and appeal to global markets."
-        }
-      ].map((value, index) => (
-        <motion.div
-          key={index}
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { 
-              opacity: 1, 
-              y: 0,
-              transition: { 
-                duration: 0.6,
-                delay: index * 0.15
-              }
-            }
-          }}
-          whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
-          className={`bg-white p-8 rounded-2xl shadow-xl relative overflow-hidden group border border-gray-100 hover:border-${value.color}-100`}
-        >
-          {/* Animated background elements */}
-          <motion.div 
-            initial={{ scale: 0.8, opacity: 0.1 }}
-            whileHover={{ scale: 1.2, opacity: 0.2 }}
-            transition={{ duration: 0.8 }}
-            className={`absolute -top-6 -right-6 w-32 h-32 rounded-full bg-${value.color}-100`}
-          />
-          
-          {/* Value content */}
-          <div className="relative z-10">
-            <div className={`w-16 h-16 rounded-full bg-${value.color}-100 flex items-center justify-center mb-6 text-${value.color}-600`}>
-              {value.icon}
-            </div>
-            
-            <h3 className="text-xl font-bold mb-4 text-gray-800">{value.title}</h3>
-            <p className="text-gray-600 leading-relaxed">{value.description}</p>
-            
-            <motion.div 
-              initial={{ width: 0 }}
-              whileInView={{ width: '40px' }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 + index * 0.1, duration: 0.8 }}
-              className={`h-1 bg-${value.color}-500 rounded-full mt-5`}
-            />
           </div>
-        </motion.div>
-      ))}
+          
+          <h3 className="text-xl font-bold mb-4 text-gray-800">Global Reach</h3>
+          <p className="text-gray-600 leading-relaxed">While rooted in Indian traditions, our solutions are designed to meet international standards and appeal to global markets.</p>
+          
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: '40px' }}
+            viewport={{ once: true }}
+            transition={{ delay: 1.0, duration: 0.8 }}
+            className="h-1 bg-indigo-500 rounded-full mt-5"
+          />
+        </div>
+      </motion.div>
     </motion.div>
   </div>
 </section>
@@ -1012,7 +1174,7 @@ export default function Home() {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 font-heading">Ready to Partner with Us?</h2>
             <p className="text-gray-600 max-w-xl mx-auto mb-8 font-body">
-              Contact our team today to discuss your pharmaceutical needs or learn more about our products and services.
+              Contact our team today to discuss your needs or learn more about our products and services.
             </p>
             <Link 
               href="/contact"

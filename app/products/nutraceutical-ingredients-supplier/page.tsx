@@ -310,7 +310,7 @@ export default function NutraceuticalIngredientsSupplierPage() {
                   <div className="p-6 md:p-10">
                     <h2 className="text-3xl font-extrabold text-blue-800 mb-4">Our Ingredient Offerings</h2>
                     <p className="text-teal-800 mb-8 text-lg">
-                      Aurora Farmabio offers a comprehensive portfolio of nutraceutical ingredients and advanced liposomal actives. Explore our extensive range below, organized for clarity.
+                      Adhiron offers a comprehensive portfolio of nutraceutical ingredients and advanced liposomal actives. Explore our extensive range below, organized for clarity.
                     </p>
 
                     {/* INGREDIENTS PORTFOLIO */}

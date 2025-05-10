@@ -1,6 +1,6 @@
 # Adhiron Group E-Commerce Backend
 
-This document provides information about the backend implementation for the Adhiron Group pharmaceutical e-commerce website.
+This document provides information about the backend implementation for the Adhiron Group e-commerce website.
 
 ## Backend Architecture
 
