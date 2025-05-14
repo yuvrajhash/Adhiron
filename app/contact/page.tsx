@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import dynamic from "next/dynamic";
 
@@ -24,27 +24,39 @@ export default function ContactPage() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
     setSubmitSuccess(false);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setSubmitSuccess(true);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
+      const response = await fetch("https://formspree.io/f/mgvkrawq", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-      setTimeout(() => setSubmitSuccess(false), 5000);
+      
+      if (response.ok) {
+        setSubmitSuccess(true);
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: ""
+        });
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Form submission failed");
+      }
     } catch (error) {
       console.error("Form submission error:", error instanceof Error ? error.message : String(error));
       setSubmitError("There was an error submitting your message. Please try again later.");
@@ -127,7 +139,7 @@ export default function ContactPage() {
             <div className="lg:col-span-2 bg-white rounded-lg shadow-md p-8">
               <h2 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h2>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" action="https://formspree.io/f/mgvkrawq" method="POST">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
@@ -138,7 +150,7 @@ export default function ContactPage() {
                       placeholder="Your Name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                      className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-black"
                       required
                     />
                   </div>
@@ -151,7 +163,7 @@ export default function ContactPage() {
                       placeholder="your.email@example.com"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                      className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-black"
                       required
                     />
                   </div>
@@ -166,7 +178,7 @@ export default function ContactPage() {
                     placeholder="How can we help?"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-black"
                     required
                   />
                 </div>
@@ -180,7 +192,7 @@ export default function ContactPage() {
                     placeholder="Your message here..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none"
+                    className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none text-black"
                     required
                   ></textarea>
                 </div>
