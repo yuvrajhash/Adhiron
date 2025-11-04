@@ -37,6 +37,9 @@ module.exports = {
         'lg': 'var(--border-radius-lg)',
         'xl': 'var(--border-radius-xl)',
       },
+      spacing: {
+        '30': '7.5rem', // 120px
+      },
     },
   },
   plugins: [],

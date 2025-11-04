@@ -168,7 +168,7 @@ const Navbar = () => {
               alt="Adhiron Logo"
               width={120}
               height={120}
-              className="w-32 h-32 object-contain"
+              className="w-30 h-30 object-contain"
               style={{
                 filter: 'contrast(1.05) brightness(1.02)'
               }}
