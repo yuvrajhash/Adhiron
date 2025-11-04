@@ -297,7 +297,6 @@ export default function AboutPage() {
           </ul>
         </motion.div>
 
-       
         {/* 7. Call to Action */}
         <motion.div
           variants={sectionVariants}

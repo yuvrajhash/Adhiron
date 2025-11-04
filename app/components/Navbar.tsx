@@ -161,23 +161,18 @@ const Navbar = () => {
         >
           <Link 
             href="/" 
-            className="flex items-center space-x-2"
+            className="flex items-center"
           >
-            <div className="relative w-12 h-12 rounded-full flex items-center justify-center bg-white border border-gray-200 shadow-sm overflow-hidden hover:shadow-md">
-              <img
-                src="/images/logo22.jpg"
-                alt="Adhiron Logo"
-                width={72}
-                height={72}
-                className="w-10 h-10 object-cover"
-                style={{
-                  filter: 'contrast(1.05) brightness(1.02)'
-                }}
-              />
-            </div>
-            <span className="font-bold text-xl text-gray-900 tracking-tight font-sans">
-              ADHIRON
-            </span>
+            <img
+              src="/ecec9375-9d1d-4421-85d3-c46a07011759_removalai_preview.png"
+              alt="Adhiron Logo"
+              width={120}
+              height={120}
+              className="w-30 h-30 object-contain"
+              style={{
+                filter: 'contrast(1.05) brightness(1.02)'
+              }}
+            />
           </Link>
         </motion.div>
 
@@ -228,7 +223,7 @@ const Navbar = () => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-72 bg-white rounded-xl shadow-xl overflow-hidden z-50 border border-gray-100"
+                  className="absolute top-full left-0 md:left-1/2 transform md:-translate-x-1/2 mt-2 w-72 max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-xl overflow-auto max-h-[70vh] z-50 border border-gray-100"
                 >
                   <div className="grid grid-cols-1 divide-y divide-gray-100">
                     {productCategories.map((category) => (

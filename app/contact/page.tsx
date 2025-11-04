@@ -237,7 +237,18 @@ export default function ContactPage() {
       {/* Map Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
-          <MapSection />
+          {(() => {
+            const address = "156, Bahadarpur, Selaqui, Dehradun-248197, Uttarakhand";
+            const embed = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
+            const mapsShortLink = "https://maps.app.goo.gl/vVMFLGggp2sypmfA8";
+            return (
+              <MapSection
+                embedSrc={embed}
+                mapsLink={mapsShortLink}
+                ariaLabel={`Map showing ${address}`}
+              />
+            );
+          })()}
         </div>
       </section>
     </div>
