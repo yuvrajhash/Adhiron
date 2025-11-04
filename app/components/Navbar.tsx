@@ -166,9 +166,9 @@ const Navbar = () => {
             <img
               src="/ecec9375-9d1d-4421-85d3-c46a07011759_removalai_preview.png"
               alt="Adhiron Logo"
-              width={120}
-              height={120}
-              className="w-30 h-30 object-contain"
+              width={70}
+              height={70}
+              className="w-25 h-25 object-contain"
               style={{
                 filter: 'contrast(1.05) brightness(1.02)'
               }}
