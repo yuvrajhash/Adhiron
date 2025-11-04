@@ -1,0 +1,57 @@
+/* Improved contrast for text on light backgrounds */
+.text-gray-600 {
+  color: rgba(55, 65, 81, 1) !important; /* Darker gray for better contrast */
+}
+
+.text-gray-300 {
+  color: rgba(156, 163, 175, 1) !important; /* Slightly darker for footer text */
+}
+
+/* Improved contrast for text on blue backgrounds */
+.bg-blue-600 .text-blue-100 {
+  color: rgba(219, 234, 254, 1) !important; /* Lighter blue for better contrast on blue backgrounds */
+}
+
+/* Improved contrast for buttons and interactive elements */
+.bg-blue-600 {
+  background-color: rgba(37, 99, 235, 1) !important; /* Slightly darker blue for better contrast */
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: rgba(29, 78, 216, 1) !important; /* Darker blue on hover for better contrast */
+}
+
+/* Improved contrast for footer links */
+.bg-gray-900 .text-gray-300 {
+  color: rgba(209, 213, 219, 1) !important; /* Lighter gray for better contrast on dark backgrounds */
+}
+
+/* Improved contrast for testimonials */
+.bg-blue-50 {
+  background-color: rgba(239, 246, 255, 1) !important; /* Slightly darker blue background */
+}
+
+/* Hero section overlay for better text contrast */
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important; /* Darker overlay for better text contrast */
+}
+
+/* Improved contrast for hero text */
+.hero-text {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important; /* Text shadow for better contrast */
+}
+
+/* Improved contrast for card backgrounds */
+.bg-white {
+  background-color: rgba(255, 255, 255, 1) !important; /* Pure white background */
+}
+
+/* Improved contrast for form elements */
+input, textarea, select {
+  border-color: rgba(107, 114, 128, 1) !important; /* Darker border for form elements */
+}
+
+/* Improved contrast for disabled elements */
+button:disabled {
+  opacity: 0.6 !important; /* Increased opacity for disabled buttons */
+} 
